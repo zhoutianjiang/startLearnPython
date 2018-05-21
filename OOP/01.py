@@ -34,5 +34,6 @@ print(yueyue.age)
 # 注意成员函数的调用没有传递进入参数
 yueyue.doHomework()
 
+print("leo")
 
 print(Student.__dict__)
