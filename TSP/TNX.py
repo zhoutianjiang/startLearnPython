@@ -1,7 +1,9 @@
 import random
 import numpy as np
+import matplotlib.pyplot as plt
 
 
+plt.rcParams['font.sans-serif'] = ['SimHei']
 eta = 0.9999999
 c = 5
 step = 10
@@ -15,6 +17,7 @@ D = [[0, 10, 20, 30, 40, 50, 60, 10],
      [50, 40, 30, 20, 10, 0, 10, 20],
      [60, 50, 40, 30, 20, 10, 0, 10],
      [10, 60, 50, 40, 30, 20, 10, 0]]
+best = []
 
 
 def fit(x, y):
@@ -60,6 +63,7 @@ def run():
         xbest.append(i)
     fbest = f(xbest)
     print('0: ', 'xbest =',xbest,' fbest =', fbest)
+    best.append(fbest)
 
     for i in range(n):
         d = step / c
@@ -80,14 +84,26 @@ def run():
             x[j] = x[j] - step*dre[j]*np.sign(fleft-fright)
         x = mod(x)
         fo = f(x)
-        print(fo)
         if fo <= fbest:
             for j in range(len(x)):
                 xbest[j] = x[j]
             fbest = fo
         print(i+1, ': xbest =',xbest,' fbest =', fbest)
+        best.append(fbest)
         step = step*eta
 
 
 if __name__ == '__main__':
     run()
+    x = [i for i in range(n+1)]
+    xi = [i*100 for i in range(11)]
+    y = best
+    plt.figure()
+    plt.plot(x, y, marker='o', mec='r', mfc='w' )
+    plt.legend()
+    plt.xlabel("Generation")
+    plt.ylabel("fitness")
+    plt.xticks(xi)
+    plt.title("TNX SOLVE TSP")
+    plt.show()
+
