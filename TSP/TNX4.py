@@ -2,15 +2,24 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
+'''
+当 eta=0.95 时，设置 rand 属性后能够有效的加快收敛速度
+当 eta=0.99 时，设置 rand 属性效果不明显
+                设置 step=100 效果比 step=200 显著，但貌似有时效果很差
+                
+说明，当值域过大时，有可能因为迭代后步长变短，达不到预期的收敛效果
 
+当维数 k 增大时，步长并不是越大就好
+
+'''
 plt.rcParams['font.sans-serif'] = ['SimHei']
-eta = 0.95
-c = 3
-step = 20
+eta = 0.99
+c = 5
+step = 100
 #step0 = 20
-n = 500
+n = 1000
 k = 20
-#p = 0.05
+p = 0.05
 best = []
 bb=[]
 Count = 0
@@ -40,8 +49,8 @@ def run():
 
     for i in range(n):
         '''rand = random.random()
-        if rand<p:
-            step = step0'''
+        if i>100 and rand<p:
+            step = 2'''
         d = step / c
         dre = []
         for j in range(k):
@@ -58,7 +67,7 @@ def run():
             x[j] = x[j] - step*dre[j]*np.sign(fleft-fright)
         fo = f(x)
         bb.append(fo)
-        if fo < fbest:
+        if fo <= fbest:
             for j in range(k):
                 xbest[j] = x[j]
             fbest = fo
@@ -71,7 +80,7 @@ def run():
 if __name__ == '__main__':
     run()
     x = [i for i in range(n+1)]
-    xi = [i*100 for i in range(6)]
+    xi = [i*100 for i in range(11)]
     y = best
     y1 = bb
     plt.plot(x, y, marker='o', mec='r', mfc='w')
