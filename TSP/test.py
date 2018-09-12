@@ -1,14 +1,14 @@
 import matplotlib.pyplot as plt
 
 
-sta = 0.95
+sta = 0.99
 sta1 = 0.975
-s = 20
-z = 20
+s = 4
+z = 4
 x = []
 y = []
 xx = []
-for i in range(201):
+for i in range(2001):
     s = s*sta1
     #s = s-i/10000
     z = z*sta

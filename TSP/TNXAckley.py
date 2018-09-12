@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 eta = 0.99      # 步长衰减
 c = 5           # 步长度
-step = 20       # 步长
+step = 64       # 步长
 k = 5          # 维数
 n = 2000    # 迭代次数
 bb = []         # 每一次迭代后的值
@@ -20,34 +20,21 @@ best = []       # 每一次迭代后的总体最佳值
 p = 0.005
 
 
-'''def f(x):       # 测试函数Rosenbrock
-    ss = 0
-    for i in range(k-1):
-        ss += 100*((x[i+1]-(x[i])**2)**2) + (x[i]-1)**2
-    return ss'''
-
-
-'''def f(x):      # 测试函数Rastigrin
-    ss = 0
+def f(x):       # 测试函数Ackley
+    s1 = 0
+    s2 = 0
     for i in x:
-        ss += i**2 - 10*np.cos(2*np.pi*i) + 10
-    return ss'''
-
-
-def f(x):      # 测试函数Griewank
-    ss = 0
-    sk = 1
-    for i in range(k):
-        ss += x[i] ** 2
-        sk *= np.cos(x[i] / (np.sqrt(i+1)))
-    return 1/4000*ss - sk + 1
+        s1 += i ** 2
+        s2 += np.cos(2*np.pi*i)
+    ss = -20*np.exp(-0.2*np.sqrt(1/k*s1)) - np.exp(1/k*s2) + 20 + np.e
+    return ss
 
 
 def run():
     global step
     x = []
     for i in range(k):
-        x.append(-10 + 20*random.random())
+        x.append(-32 + 64*random.random())
     xbest = []
     for i in x:
         xbest.append(i)
