@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 '''
+测试 Spherical
+
 当 eta=0.95 时，设置 rand 属性后能够有效的加快收敛速度
 当 eta=0.99 时，设置 rand 属性效果不明显
                 设置 step=100 效果比 step=200 显著，但貌似有时效果很差
@@ -11,11 +13,12 @@ import matplotlib.pyplot as plt
 
 当维数 k 增大时，步长并不是越大就好
 
+eta=0.99 迭代次数越高能无限趋向于0
 '''
 plt.rcParams['font.sans-serif'] = ['SimHei']
 eta = 0.99
 c = 5
-step = 100
+step = 50
 #step0 = 20
 n = 1000
 k = 20
@@ -55,6 +58,7 @@ def run():
         dre = []
         for j in range(k):
             dre.append(-1 + 2*random.random())
+        dre = dre / np.linalg.norm(dre)
         xleft = []
         for j in range(k):
             xleft.append(x[j] + dre[j] * d)

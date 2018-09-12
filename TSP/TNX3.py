@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 
 
 plt.rcParams['font.sans-serif'] = ['SimHei']
-eta = 0.95
-c = 3
-step = 20
+eta = 0.99
+c = 5
+step = 200
 #step0 = 20
-n = 500
+n = 1000
 k = 20
 #p = 0.05
 best = []

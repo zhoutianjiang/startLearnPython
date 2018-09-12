@@ -177,6 +177,7 @@ def run():
         dre = []
         for j in range(k):
             dre.append(-1 + 2*random.random())
+       # dre = dre / np.linalg.norm(dre)
         xleft = []
         for j in range(k):
             xleft.append(x[j] + dre[j] * d)
