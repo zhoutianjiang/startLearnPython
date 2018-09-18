@@ -58,7 +58,7 @@ def run():
 
     for i in range(n):
         '''rand = random.random()
-        if n>500 and rand<p:
+        if i>500 and rand<p:
             step = 5'''
         d = step / c
         dre = []

@@ -12,8 +12,8 @@ import matplotlib.pyplot as plt
 
 eta = 0.99      # 步长衰减
 c = 5           # 步长度
-step = 64       # 步长
-k = 5          # 维数
+step = 100       # 步长
+k = 10          # 维数
 n = 2000    # 迭代次数
 bb = []         # 每一次迭代后的值
 best = []       # 每一次迭代后的总体最佳值
@@ -21,12 +21,9 @@ p = 0.005
 
 
 def f(x):       # 测试函数Ackley
-    s1 = 0
-    s2 = 0
-    for i in x:
-        s1 += i ** 2
-        s2 += np.cos(2*np.pi*i)
-    ss = -20*np.exp(-0.2*np.sqrt(1/k*s1)) - np.exp(1/k*s2) + 20 + np.e
+    ss = 0
+    for i in range(k-1):
+        ss += x[i]**2 + 2*(x[i+1]**2) - 0.3*np.cos(3*np.pi*x[i]) - 0.4*np.cos(4*np.pi*x[i+1]) + 0.7
     return ss
 
 
@@ -34,7 +31,7 @@ def run():
     global step
     x = []
     for i in range(k):
-        x.append(-32 + 64*random.random())
+        x.append(-50 + 100*random.random())
     xbest = []
     for i in x:
         xbest.append(i)
@@ -45,7 +42,7 @@ def run():
 
     for i in range(n):
         '''rand = random.random()
-        if n>500 and rand<p:
+        if i>500 and rand<p:
             step = 5'''
         d = step / c
         dre = []

@@ -7,17 +7,18 @@ import matplotlib.pyplot as plt
 测试 函数
 使用天牛须算法测试后，效果不理想
 维数越少越趋近最小值
+测试Ackley函数，发现不收敛
 '''
 
 
 eta = 0.99      # 步长衰减
 c = 5           # 步长度
-step = 64       # 步长
-k = 5          # 维数
+step = 32       # 步长
+k = 10          # 维数
 n = 2000    # 迭代次数
 bb = []         # 每一次迭代后的值
 best = []       # 每一次迭代后的总体最佳值
-p = 0.005
+p = 0.05
 
 
 def f(x):       # 测试函数Ackley
@@ -29,12 +30,11 @@ def f(x):       # 测试函数Ackley
     ss = -20*np.exp(-0.2*np.sqrt(1/k*s1)) - np.exp(1/k*s2) + 20 + np.e
     return ss
 
-
 def run():
     global step
     x = []
     for i in range(k):
-        x.append(-32 + 64*random.random())
+        x.append(-32 + 32*random.random())
     xbest = []
     for i in x:
         xbest.append(i)
@@ -45,7 +45,7 @@ def run():
 
     for i in range(n):
         '''rand = random.random()
-        if n>500 and rand<p:
+        if i>500 and rand<p:
             step = 5'''
         d = step / c
         dre = []
@@ -72,6 +72,7 @@ def run():
         print(i+1, ": xbest = ",xbest ,"fbest = ", fbest)
         best.append(fbest)
         step = step*eta
+    print(fbest)
 
 
 if __name__ == '__main__':
