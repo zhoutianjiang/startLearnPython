@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 
 '''
@@ -74,6 +75,18 @@ def run():
         step = step*eta
     print(fbest)
 
+def fun1(x,y):
+    z = -20*np.exp(-0.2*np.sqrt(1/2*(x**2+y**2))) - np.exp(1/2*(np.cos(2*np.pi*x)+np.cos(2*np.pi*y))) + 20 + np.e
+    return z
+
+fig = plt.figure(1)
+ax = Axes3D(fig)
+xx = np.arange(-1, 1, 0.01)
+yy = np.arange(-1, 1, 0.01)
+xx, yy = np.meshgrid(xx, yy)
+zz = fun1(xx,yy)
+ax.plot_surface(xx,yy,zz, cmap='Blues')
+
 
 if __name__ == '__main__':
     run()
@@ -81,6 +94,7 @@ if __name__ == '__main__':
     xi = [i*200 for i in range(11)]
     y = best
     y1 = bb
+    plt.figure('hello')
     plt.plot(x, y, marker='o', mec='r', mfc='w')
     plt.plot(x, y1)
     plt.xticks(xi)
