@@ -75,21 +75,26 @@ def run():
         step = step*eta
     print(fbest)
 
-def fun1(x,y):
+
+def fun(x,y):
     z = -20*np.exp(-0.2*np.sqrt(1/2*(x**2+y**2))) - np.exp(1/2*(np.cos(2*np.pi*x)+np.cos(2*np.pi*y))) + 20 + np.e
     return z
 
-fig = plt.figure(1)
-ax = Axes3D(fig)
-xx = np.arange(-1, 1, 0.01)
-yy = np.arange(-1, 1, 0.01)
-xx, yy = np.meshgrid(xx, yy)
-zz = fun1(xx,yy)
-ax.plot_surface(xx,yy,zz, cmap='Blues')
+
+def getPic():
+    fig = plt.figure(1)
+    ax = Axes3D(fig)
+    xx = np.arange(-32, 32, 1)
+    yy = np.arange(-32, 32, 1)
+    xx, yy = np.meshgrid(xx, yy)
+    zz = fun(xx,yy)
+    ax.plot_surface(xx,yy,zz, cmap='rainbow')
+    return
 
 
 if __name__ == '__main__':
     run()
+    getPic()
     x = [i for i in range(n+1)]
     xi = [i*200 for i in range(11)]
     y = best

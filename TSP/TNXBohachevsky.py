@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 
 '''
@@ -71,12 +72,30 @@ def run():
         step = step*eta
 
 
+def fun(x,y):
+    z = x**2 + 2*y**2 - 0.3*np.cos(3*np.pi*x) - 0.4*np.cos(4*np.pi*y) + 0.7
+    return z
+
+
+def getPic():
+    fig = plt.figure(1)
+    ax = Axes3D(fig)
+    xx = np.arange(-50, 50, 1)
+    yy = np.arange(-50, 50, 1)
+    xx, yy = np.meshgrid(xx, yy)
+    zz = fun(xx,yy)
+    ax.plot_surface(xx,yy,zz, cmap='rainbow')
+    return
+
+
 if __name__ == '__main__':
     run()
+    getPic()
     x = [i for i in range(n+1)]
     xi = [i*200 for i in range(11)]
     y = best
     y1 = bb
+    plt.figure(2)
     plt.plot(x, y, marker='o', mec='r', mfc='w')
     plt.plot(x, y1)
     plt.xticks(xi)

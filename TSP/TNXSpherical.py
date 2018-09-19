@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 '''
 测试 Spherical
@@ -15,7 +16,6 @@ import matplotlib.pyplot as plt
 
 eta=0.99 迭代次数越高能无限趋向于0
 '''
-plt.rcParams['font.sans-serif'] = ['SimHei']
 eta = 0.99
 c = 5
 step = 50
@@ -81,12 +81,29 @@ def run():
         step = step*eta
 
 
+def fun(x, y):
+    return  x**2+y**2
+
+
+def getPic():
+    fig = plt.figure(1)
+    ax = Axes3D(fig)
+    xx = np.arange(-100, 100, 1)
+    yy = np.arange(-100, 100, 1)
+    xx, yy = np.meshgrid(xx, yy)
+    zz = fun(xx, yy)
+    ax.plot_surface(xx, yy, zz, cmap='rainbow')
+    return
+
+
 if __name__ == '__main__':
     run()
+    getPic()
     x = [i for i in range(n+1)]
     xi = [i*100 for i in range(11)]
     y = best
     y1 = bb
+    plt.figure(2)
     plt.plot(x, y, marker='o', mec='r', mfc='w')
     plt.plot(x, y1)
     plt.xticks(xi)
