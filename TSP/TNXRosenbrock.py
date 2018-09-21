@@ -14,7 +14,7 @@ from mpl_toolkits.mplot3d import Axes3D
 eta = 0.99      # 步长衰减
 c = 5           # 步长度
 step = 20       # 步长
-k = 5          # 维数
+k = 20          # 维数
 n = 2000    # 迭代次数
 bb = []         # 每一次迭代后的值
 best = []       # 每一次迭代后的总体最佳值

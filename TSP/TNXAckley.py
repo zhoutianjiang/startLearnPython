@@ -14,8 +14,8 @@ from mpl_toolkits.mplot3d import Axes3D
 
 eta = 0.99      # 步长衰减
 c = 5           # 步长度
-step = 32       # 步长
-k = 10          # 维数
+step = 10       # 步长
+k = 5          # 维数
 n = 2000    # 迭代次数
 bb = []         # 每一次迭代后的值
 best = []       # 每一次迭代后的总体最佳值
@@ -35,7 +35,7 @@ def run():
     global step
     x = []
     for i in range(k):
-        x.append(-32 + 32*random.random())
+        x.append(-32 + 64*random.random())
     xbest = []
     for i in x:
         xbest.append(i)
